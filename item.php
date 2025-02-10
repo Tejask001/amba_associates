@@ -57,7 +57,7 @@ if ($product === null) {
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-4"><img class="card-img-top mb-5 mb-md-0"
-                        src="<?php echo 'assets/img/' . $product['image']; ?>"
+                        src="<?php echo 'CRM/assets/images/' . $product['image']; ?>"
                         alt="<?php echo $product['general_name']; ?>" /></div>
                 <div class="col-md-6">
                     <div class="small mb-1">SKU:

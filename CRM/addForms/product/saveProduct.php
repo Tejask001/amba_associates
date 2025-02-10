@@ -3,10 +3,8 @@
 require '../../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get supplier ID from form
     $supplier_id = $_POST['supplier_id'];
 
-    // Loop through each product item
     $product_ids = $_POST['product_id'];
     $batch_codes = $_POST['batch_code'];
     $general_names = $_POST['general_name'];
@@ -18,12 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $product_lifes = $_POST['product_life'];
     $stocks = $_POST['stock'];
 
-    // Start transaction
+    // Create the directory if it doesn't exist
+    $uploadDir = '../../assets/images/';
+    if (!file_exists($uploadDir)) {
+        mkdir($uploadDir, 0777, true); // Create directory with full permissions (adjust as needed)
+    }
+
     $conn->begin_transaction();
 
     try {
         for ($i = 0; $i < count($product_ids); $i++) {
-            // Insert product details into products table
             $product_id = $product_ids[$i];
             $batch_code = $batch_codes[$i];
             $general_name = $general_names[$i];
@@ -34,18 +36,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $margin = $margins[$i];
             $product_life = $product_lifes[$i];
             $stock = $stocks[$i];
+            $imageFileName = null;  // Initialize to null
 
-            // Insert into products table
-            $sql = "INSERT INTO product (product_code, general_name, chemical_name, chemical_size, pp, sp, mrgp, product_life, batch_code, supplier_id)
-                    VALUES ('$product_id', '$general_name', '$chemical_name', '$size', '$purchase_price', '$selling_price', '$margin', '$product_life', '$batch_code', '$supplier_id')";
+            // Check if a file was uploaded for this product
+            if (isset($_FILES['image']['name'][$i]) && $_FILES['image']['error'][$i] == UPLOAD_ERR_OK) {
+                $imageTmpName = $_FILES['image']['tmp_name'][$i];
+                $imageFileType = strtolower(pathinfo($_FILES['image']['name'][$i], PATHINFO_EXTENSION));
+                $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+
+                if (in_array($imageFileType, $allowedTypes)) {
+                    $imageFileName = uniqid() . '.' . $imageFileType;
+                    $imageUploadPath = $uploadDir . $imageFileName;
+
+                    if (!move_uploaded_file($imageTmpName, $imageUploadPath)) {
+                        throw new Exception("Failed to move uploaded file.");
+                    }
+                } else {
+                    throw new Exception("Invalid file type. Allowed types: " . implode(', ', $allowedTypes));
+                }
+            }
+
+
+            $sql = "INSERT INTO product (product_code, general_name, chemical_name, chemical_size, pp, sp, mrgp, product_life, batch_code, supplier_id, image)
+                    VALUES ('$product_id', '$general_name', '$chemical_name', '$size', '$purchase_price', '$selling_price', '$margin', '$product_life', '$batch_code', '$supplier_id', '$imageFileName')";
 
             if (!$conn->query($sql)) {
                 throw new Exception("Error inserting product: " . $conn->error);
             }
 
-            // Update stock table
+
             $sql_stock = "INSERT INTO stock (batch_code, quantity, mas)
-                          VALUES ('$batch_code', '$stock', 10) 
+                          VALUES ('$batch_code', '$stock', 10)
                           ON DUPLICATE KEY UPDATE quantity = quantity + '$stock'";
 
             if (!$conn->query($sql_stock)) {
@@ -53,15 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        // Commit transaction
         $conn->commit();
-        echo "<script>alert('Product Added successfully!');
-         location.replace('../../product.php');
-        </script>";
+        echo "<script>alert('Product(s) added successfully!'); location.replace('../../product.php');</script>";
     } catch (Exception $e) {
-        // Rollback transaction in case of error
         $conn->rollback();
         echo "Error: " . $e->getMessage();
+        // Consider logging the error to a file for debugging:
+        error_log("Error adding product: " . $e->getMessage());
     }
 }
 

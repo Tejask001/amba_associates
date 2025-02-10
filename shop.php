@@ -87,11 +87,8 @@ $products_data = $products;
         .card-img-top {
             transition: transform 0.3s ease-in-out;
             width: 100%;
-            /* Ensure image takes full width */
             height: 150px;
-            /* Fixed height for consistent image size.  Important! */
-            object-fit: cover;
-            /* Cover the area, maintaining aspect ratio. */
+            object-fit: contain;
         }
 
         .card:hover .card-img-top {
@@ -185,7 +182,7 @@ $products_data = $products;
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Image -->
-                            <img class="card-img-top" src="assets/img/<?php echo $product['image']; ?>" alt="<?php echo $product['general_name']; ?>" />
+                            <img class="card-img-top" src="CRM/assets/images/<?php echo $product['image']; ?>" alt="<?php echo $product['general_name']; ?>" />
 
                             <!-- Card Body -->
                             <div class="card-body">

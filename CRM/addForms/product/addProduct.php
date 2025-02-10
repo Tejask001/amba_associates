@@ -1,8 +1,6 @@
 <?php
 require '../../auth.php'; // auth check
-
 require '../../config.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -152,7 +150,7 @@ require '../../config.php';
 <body>
     <div class="container mt-5">
         <h1 class="mb-4">Add Product</h1>
-        <form id="addOrderForm" action="saveProduct.php" method="post">
+        <form id="addOrderForm" action="saveProduct.php" method="post" enctype="multipart/form-data">
             <!-- Supplier Selection -->
             <div class="row mb-4">
                 <div class="mb-3 col-md-3">
@@ -160,7 +158,7 @@ require '../../config.php';
                     <select id="supplier_id" name="supplier_id" class="form-select to-fill" required>
                         <option value="">Select Supplier</option>
                         <?php
-                        $suppliers_result = $conn->query("SELECT id, CONCAT(comp_first_name, ' ', comp_middle_name, ' ', comp_last_name) AS company_name FROM supplier");
+                        $suppliers_result = $conn->query("SELECT id, comp_name AS company_name FROM supplier");
                         while ($row = $suppliers_result->fetch_assoc()) {
                             echo "<option value='{$row['id']}'>{$row['company_name']}</option>";
                         }
@@ -223,12 +221,18 @@ require '../../config.php';
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <label for="product_life" class="form-label">Shelf Life (in months)</label>
+                            <label for="product_life" class="form-label">Shelf Life (months)</label>
                             <input type="number" name="product_life[]" class="form-control to-fill" min="0" required>
                         </div>
                         <div class="col-md-2">
                             <label for="stock" class="form-label">Stock Quantity</label>
                             <input type="number" name="stock[]" class="form-control to-fill" min="0" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="image" class="form-label">Image</label>
+                            <input type="file" name="image[]" class="form-control to-fill" accept="image/jpeg, image/png, image/gif">
                         </div>
                         <div class="col-md-2 d-flex align-items-end">
                             <button type="button" class="btn btn-danger remove-row">Remove</button>
@@ -248,66 +252,70 @@ require '../../config.php';
             // Add a new row
             $('#addRow').click(function() {
                 const newOrderItem = `
-                <div class="order-item py-4 px-4 mb-4">
-                    <!-- Product Row 1 -->
-                    <div class="row mb-3">
-                        <div class="col-md-2">
-                            <label for="product_id" class="form-label">Product Id</label>
-                            <input type="text" name="product_id[]" class="form-control product-id to-fill" required>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="batch_code" class="form-label">Batch Code</label>
-                            <input type="text" name="batch_code[]" class="form-control to-fill" required>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="general_name" class="form-label">General Name</label>
-                            <input type="text" name="general_name[]" class="form-control to-fill" required>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="chemical_name" class="form-label">Chemical Name</label>
-                            <input type="text" name="chemical_name[]" class="form-control to-fill" required>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="size" class="form-label">Chemical Size</label>
-                            <input type="text" name="size[]" class="form-control to-fill" required>
+            <div class="order-item py-4 px-4 mb-4">
+                <!-- Product Row 1 -->
+                <div class="row mb-3">
+                    <div class="col-md-2">
+                        <label for="product_id" class="form-label">Product Id</label>
+                        <input type="text" name="product_id[]" class="form-control product-id to-fill" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="batch_code" class="form-label">Batch Code</label>
+                        <input type="text" name="batch_code[]" class="form-control to-fill" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="general_name" class="form-label">General Name</label>
+                        <input type="text" name="general_name[]" class="form-control to-fill" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="chemical_name" class="form-label">Chemical Name</label>
+                        <input type="text" name="chemical_name[]" class="form-control to-fill" required>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="size" class="form-label">Chemical Size</label>
+                        <input type="text" name="size[]" class="form-control to-fill" required>
+                    </div>
+                </div>
+                <!-- Product Row 2 -->
+                <div class="row mb-3">
+                    <div class="col-md-2">
+                        <label for="purchase_price" class="form-label">Purchase Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text">₹</span>
+                            <input type="number" name="purchase_price[]" class="form-control purchase-price to-fill" min="0" required>
                         </div>
                     </div>
-                    <!-- Product Row 2 -->
-                    <div class="row mb-3">
-                        <div class="col-md-2">
-                            <label for="purchase_price" class="form-label">Purchase Price</label>
-                            <div class="input-group">
-                                <span class="input-group-text">₹</span>
-                                <input type="number" name="purchase_price[]" class="form-control purchase-price to-fill" min="0" required>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="selling_price" class="form-label">Selling Price</label>
-                            <div class="input-group">
-                                <span class="input-group-text">₹</span>
-                                <input type="number" name="selling_price[]" class="form-control selling-price to-fill" min="0" required>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="margin" class="form-label">Margin</label>
-                            <div class="input-group">
-                                <span class="input-group-text">₹</span>
-                                <input type="number" name="margin[]" class="form-control margin to-fill" min="0" readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="product_life" class="form-label">Shelf Life (in months)</label>
-                            <input type="number" name="product_life[]" class="form-control to-fill" min="0" required>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="stock" class="form-label">Stock Quantity</label>
-                            <input type="number" name="stock[]" class="form-control to-fill" min="0" required>
-                        </div>
-                        <div class="col-md-2 d-flex align-items-end">
-                            <button type="button" class="btn btn-danger remove-row">Remove</button>
+                    <div class="col-md-2">
+                        <label for="selling_price" class="form-label">Selling Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text">₹</span>
+                            <input type="number" name="selling_price[]" class="form-control selling-price to-fill" min="0" required>
                         </div>
                     </div>
-                </div>`;
+                    <div class="col-md-2">
+                        <label for="margin" class="form-label">Margin</label>
+                        <div class="input-group">
+                            <span class="input-group-text">₹</span>
+                            <input type="number" name="margin[]" class="form-control margin to-fill" min="0" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="product_life" class="form-label">Shelf Life (months)</label>
+                        <input type="number" name="product_life[]" class="form-control to-fill" min="0" required>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="number" name="stock[]" class="form-control to-fill" min="0" required>
+                    </div>
+                     <div class="col-md-2">
+                        <label for="image" class="form-label">Image</label>
+                        <input type="file" name="image[]" class="form-control to-fill" accept="image/jpeg, image/png, image/gif">
+                    </div>
+                    <div class="col-md-1 d-flex align-items-end">
+                        <button type="button" class="btn btn-danger remove-row">Remove</button>
+                    </div>
+                </div>
+            </div>`;
                 $('#itemsContainer').append(newOrderItem);
             });
 
@@ -353,6 +361,7 @@ require '../../config.php';
             });
         });
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
