@@ -1,11 +1,11 @@
 <?php
-    include 'get_product_details.php'; // Include PHP to fetch product details
+include 'get_product_details.php'; // Include PHP to fetch product details
 
-    // Redirect to shop page if product not found
-    if ($product === null) {
-        header("Location: shop.php"); // Redirect to shop page if product not found
-        exit();
-    }
+// Redirect to shop page if product not found
+if ($product === null) {
+    header("Location: shop.php"); // Redirect to shop page if product not found
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,14 +39,14 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item"><a class="nav-link active" href="./shop.php">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./feedback.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./feedback.php">Feedback</a></li>
                     <li class="nav-item"><a class="nav-link" href="./CRM/index.php">CRM</a></li>
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex" action="cart.php">
                     <button class="btn btn-outline-dark" type="submit">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        <span class="badge bg-dark text-white ms-1 rounded-pill cart-count">0</span>
                     </button>
                 </form>
             </div>
@@ -78,7 +78,7 @@
                     <div class="d-flex">
                         <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1"
                             style="max-width: 3rem" />
-                        <button class="btn btn-outline-dark flex-shrink-0 add-to-cart-btn" type="button">
+                        <button class="btn btn-outline-dark flex-shrink-0 add-to-cart-btn" type="button" onclick="addToCart('<?php echo $product['batch_code']; ?>', document.getElementById('inputQuantity').value)">
                             <i class="bi-cart-fill me-1"></i>
                             Add to cart
                         </button>

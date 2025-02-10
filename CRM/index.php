@@ -352,8 +352,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="../index.html">Home</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="../shop.html">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../feedback.html">Feedback</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../shop.php">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../feedback.php">Feedback</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">CRM</a></li>
                     </ul>
                     <form class="d-flex">

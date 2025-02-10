@@ -64,14 +64,14 @@ $products_data = $products; // Simply assign the $products array directly
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item"><a class="nav-link active " href="./shop.php">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./feedback.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./feedback.php">Feedback</a></li>
                     <li class="nav-item"><a class="nav-link" href="./CRM/index.php">CRM</a></li>
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex" action="cart.php">
                     <button class="btn btn-outline-dark" type="submit">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        <span class="badge bg-dark text-white ms-1 rounded-pill cart-count">0</span>
                     </button>
                 </form>
             </div>
@@ -118,9 +118,7 @@ $products_data = $products; // Simply assign the $products array directly
                                                 style="top: 0.5rem; right: 0.5rem">Out of Stock</div>
                                             <a class="btn mt-auto disabled-btn" href="#">Out of Stock</a>
                                         <?php else: ?>
-                                            <a class="btn add-to-cart-btn mt-auto"
-                                                href="item.php?batch_code=<?php echo $product['batch_code']; ?>">Add to
-                                                Cart</a>
+                                            <button class="btn add-to-cart-btn mt-auto" onclick="addToCart('<?php echo $product['batch_code']; ?>')">Add to Cart</button>
                                         <?php endif; ?>
                                     </div>
                                 </div>

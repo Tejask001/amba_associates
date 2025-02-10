@@ -1,3 +1,41 @@
+<?php
+$_ENV = parse_ini_file('.env');
+// Connect to the database
+$servername = $_ENV["DB_SERVER_NAME"];
+$username = $_ENV["DB_USER_NAME"];
+$password = $_ENV["DB_PASSWORD"];
+$dbname = $_ENV["DB_NAME"];
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name = $_POST['name'];
+    $age = $_POST['age'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $remarks = $_POST['remarks'];
+
+    $sql = "INSERT INTO feedback_form (name, age, email, phone, remarks) VALUES ('$name', '$age', '$email', '$phone', '$remarks')";
+
+    // Execute the query
+    if ($conn->query($sql) === true) {
+        echo "<script>alert('Logistics details saved successfully!');
+         location.replace('./feedback.php');
+         </script>";
+    } else {
+        echo  "$conn->error";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,14 +78,14 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="./shop.php">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="./feedback.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="./feedback.php">Feedback</a></li>
                     <li class="nav-item"><a class="nav-link" href="./CRM/index.php">CRM</a></li>
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex" action="cart.php">
                     <button class="btn btn-outline-dark" type="submit">
                         <i class="bi-cart-fill me-1"></i>
                         Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        <span class="badge bg-dark text-white ms-1 rounded-pill cart-count">0</span>
                     </button>
                 </form>
             </div>
@@ -68,36 +106,36 @@
     ">
             <div class="row justify-content-center">
                 <h1 class="text-center mb-4">Feedback Form</h1>
-                <form>
+                <form action="feedback.php" method="POST">
                     <div class="row">
                         <div class=" col-6 mb-3">
                             <label for="name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name" request>
                         </div>
 
                         <div class="col-6 mb-3">
                             <label for="age" class="form-label">Age</label>
-                            <input type="number" class="form-control" id="age" placeholder="Enter your age">
+                            <input type="number" name="age" class="form-control" id="age" placeholder="Enter your age" request>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-6 mb-3">
                             <label for="phone" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                            <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter your phone number" request>
                         </div>
 
                         <div class="col-6 mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" request>
                         </div>
 
                     </div>
 
                     <div class="mb-4">
                         <label for="remarks" class="form-label">Remarks</label>
-                        <textarea class="form-control" id="remarks" rows="3"
-                            placeholder="Enter your remarks"></textarea>
+                        <textarea class="form-control" name="remarks" id="remarks" rows="3"
+                            placeholder="Enter your remarks" request></textarea>
                     </div>
 
                     <div class="mb-3" style="display: flex; justify-content: center;">
@@ -120,7 +158,6 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
 </body>
 
 </html>
