@@ -1,5 +1,5 @@
 <?php
-$_ENV = parse_ini_file('.env');
+$_ENV = parse_ini_file('../.env');
 // Connect to the database
 $servername = $_ENV["DB_SERVER_NAME"];
 $username = $_ENV["DB_USER_NAME"];
