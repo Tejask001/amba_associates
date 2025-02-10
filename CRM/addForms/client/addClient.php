@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 require '../../auth.php'; // auth check
 
@@ -16,9 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Client variables
     $client_first_name = test_input($_POST['client-first-name']);
-    $client_middle_name = test_input($_POST['client-middle-name']);
+    $client_middle_name = test_input($_POST['client-middle-name'] ? $_POST['client-middle-name'] : null);
     $client_last_name = test_input($_POST['client-last-name']);
-    $client_dob = test_input($_POST['client-dob']);
     $client_phone = test_input($_POST['client-phone']);
     $client_email = test_input($_POST['client-email']);
     $client_address = test_input($_POST['client-address']);
@@ -33,9 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $comp_address = test_input($_POST['comp-address']);
 
     // Manager variables
-    $manager_first_name = test_input($_POST['manager-first-name']);
-    $manager_middle_name = test_input($_POST['manager-middle-name']);
-    $manager_last_name = test_input($_POST['manager-last-name']);
+    $manager_name = test_input($_POST['manager-name']);
     $manager_phone = test_input($_POST['manager-phone']);
     $manager_email = test_input($_POST['manager-email']);
 
@@ -89,15 +86,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Manager details validation
-    if (empty($manager_first_name) || !preg_match("/^[A-Za-z\s]+$/", $manager_first_name)) {
-        $errors['manager-first-name'] = "Please enter a valid manager's first name using alphabets only.";
+    if (empty($manager_name) || !preg_match("/^[A-Za-z\s]+$/", $manager_name)) {
+        $errors['manager-name'] = "Please enter a valid manager's first name using alphabets only.";
     }
-    if (!empty($manager_middle_name) && !preg_match("/^[A-Za-z\s]+$/", $manager_middle_name)) {
-        $errors['manager-middle-name'] = "Please use alphabets only for manager's middle name.";
-    }
-    if (empty($manager_last_name) || !preg_match("/^[A-Za-z\s]+$/", $manager_last_name)) {
-        $errors['manager-last-name'] = "Please enter a valid manager's last name using alphabets only.";
-    }
+
     if (empty($manager_phone) || !preg_match("/^\d{10}$/", $manager_phone)) {
         $errors['manager-phone'] = "Please enter a valid 10-digit manager's phone number.";
     }

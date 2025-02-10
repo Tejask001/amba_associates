@@ -123,13 +123,13 @@ try {
     // Commit transaction
     $conn->commit();
     echo "<script>alert('Order Updated successfully!');
-    location.replace('http://localhost:8888/amba/orders.php');
+    location.replace('../../orders.php');
     </script>";
 } catch (Exception $e) {
     // Rollback transaction on error
     $conn->rollback();
     echo "<script>alert('" . $e->getMessage() . "');
-    location.replace('http://localhost:8888/amba/orders.php');
+    location.replace('../../orders.php');
     </script>";
 }
 

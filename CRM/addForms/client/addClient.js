@@ -32,8 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 if (data.success) {
                     alert(data.message); // Display success message
-                    // form.reset();
-                    location.replace("http://localhost:8888/amba/client.php");
+                    location.replace("../../client.php");
                 }
                 else if (data.errors) {
                     handleServerErrors(data.errors);

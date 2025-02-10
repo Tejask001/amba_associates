@@ -90,7 +90,7 @@ if (!$conn->query($revenue_sql)) {
 }
 
 echo "<script>alert('Order Saved successfully!');
-location.replace('http://localhost:8888/amba/orders.php');
+location.replace('../../orders.php');
 </script>";
 
 $conn->close();

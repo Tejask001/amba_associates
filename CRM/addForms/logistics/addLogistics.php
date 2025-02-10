@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Execute query
     if ($conn->query($sql) === TRUE) {
         echo "<script>alert('Logistics details saved successfully!');
-         location.replace('http://localhost:8888/amba/logistics.php');
+         location.replace('../../logistics.php');
          </script>";
     } else {
         echo "<script>alert('Error saving logistics details: " . $conn->error . "');</script>";

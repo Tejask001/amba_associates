@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Commit transaction
         $conn->commit();
         echo "<script>alert('Product Details Updated successfully!');
-    location.replace('http://localhost:8888/amba/product.php');
+    location.replace('../../product.php');
     </script>";
     } catch (Exception $e) {
         // Rollback transaction in case of error
