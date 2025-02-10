@@ -35,7 +35,7 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="./shop.php">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./feedback.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./feedback.php">Feedback</a></li>
                     <li class="nav-item"><a class="nav-link" href="./CRM/index.php">CRM</a></li>
                 </ul>
                 <form class="d-flex" action="cart.php"> <!-- Link Cart button to cart.php -->
@@ -81,7 +81,9 @@
     </section>
 
     <!-- Footer-->
-    <footer class="py-5 nav-custom-color">
+    <footer class="py-5 nav-custom-color" style="position: absolute;
+    bottom: 0;
+    width: 100%;">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright © Your Website 2023</p>
         </div>
