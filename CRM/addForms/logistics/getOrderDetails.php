@@ -8,8 +8,8 @@ if (isset($_GET['order_id'])) {
     $orderDetails = $conn->query("
         SELECT 
             orders.date AS order_date,
-            CONCAT(client.comp_first_name, ' ', client.comp_middle_name, ' ', client.comp_last_name) AS client_name,
-            CONCAT(supplier.comp_first_name, ' ', supplier.comp_middle_name, ' ', supplier.comp_last_name) AS supplier_name,
+            client.comp_name AS client_name,
+            supplier.comp_name AS supplier_name,
             orders.client_id,
             orders.supplier_id
         FROM orders

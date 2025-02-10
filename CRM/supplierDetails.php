@@ -10,7 +10,7 @@ $trader_id = isset($_GET['trader_id']) ? intval($_GET['trader_id']) : 0;
 $sql = "SELECT 
             CONCAT_WS(' ', first_name, middle_name, last_name) AS full_name,
             phone, email, address,
-            CONCAT_WS(' ', comp_first_name, comp_middle_name, comp_last_name) AS company_name,
+            comp_name AS company_name,
             comp_type, website, manager_name, manager_phone, manager_email,
             chemical_license, comp_email, comp_address, trader_id, gst_no, pan_no, tan_no, remarks
         FROM 

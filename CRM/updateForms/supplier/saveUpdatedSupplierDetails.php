@@ -23,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $supp_address = test_input($_POST['supp-address']);
 
     // Company variables
-    $comp_first_name = test_input($_POST['comp-first-name']);
-    $comp_middle_name = test_input($_POST['comp-middle-name']);
-    $comp_last_name = test_input($_POST['comp-last-name']);
+    $comp_name = test_input($_POST['comp-name']);
+    // $comp_middle_name = test_input($_POST['comp-middle-name']);
+    // $comp_last_name = test_input($_POST['comp-last-name']);
     $comp_type = test_input($_POST['comp-type']);
     $comp_email = test_input($_POST['comp-email']);
     $comp_website = test_input($_POST['comp-url']);
@@ -67,14 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Company details validation
-    if (empty($comp_first_name) || !preg_match("/^[A-Za-z0-9.]+$/", $comp_first_name)) {
-        $errors['comp-first-name'] = "Please enter a valid company first name using alphanumeric characters.";
-    }
-    if (!empty($comp_middle_name) && !preg_match("/^[A-Za-z0-9.]+$/", $comp_middle_name)) {
-        $errors['comp-middle-name'] = "Please use alphanumeric characters only for middle name.";
-    }
-    if (empty($comp_last_name) || !preg_match("/^[A-Za-z0-9.]+$/", $comp_last_name)) {
-        $errors['comp-last-name'] = "Please enter a valid company last name using alphanumeric characters.";
+    if (empty($comp_name) || !preg_match("/^[A-Za-z0-9. ]+$/", $comp_name)) {
+        $errors['comp-name'] = "Please enter a valid company first name using alphanumeric characters.";
     }
     if (empty($comp_email) || !filter_var($comp_email, FILTER_VALIDATE_EMAIL)) {
         $errors['comp-email'] = "Please enter a valid company email.";
@@ -125,9 +119,7 @@ last_name = '$supp_last_name',
 phone = '$supp_phone',
 email = '$supp_email',
 address = '$supp_address',
-comp_first_name = '$comp_first_name',
-comp_middle_name = '$comp_middle_name',
-comp_last_name = '$comp_last_name',
+comp_name = '$comp_name',
 comp_type = '$comp_type',
 manager_name = '$manager_name',
 manager_phone = '$manager_phone',
@@ -151,7 +143,7 @@ WHERE trader_id = '$comp_trader_id'";
         }
         //echo json_encode(['success' => true, 'message' => 'Submission Successful']);
     } else {
-        echo json_encode(['success' => false, 'errors' => strip_tags($errors)]);
+        echo json_encode(['success' => false, 'errors' => $errors]);
     }
 
     exit();
@@ -164,6 +156,3 @@ function test_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
-?>
-
-<div id="error-container" style="color: red;"></div>

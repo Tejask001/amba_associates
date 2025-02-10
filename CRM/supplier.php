@@ -10,7 +10,7 @@ $sql = "
         phone,
         email,
         address,
-        CONCAT_WS(' ', comp_first_name, comp_middle_name, comp_last_name) AS company_name,
+        comp_name AS company_name,
         comp_type,
         website,
         manager_name,

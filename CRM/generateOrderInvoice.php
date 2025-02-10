@@ -74,7 +74,7 @@ if ($order_type === 'Purchase') {
             order_items.sgst,
             order_items.igst,
             order_items.billing_amount,
-            CONCAT_WS(' ', client.comp_first_name, client.comp_middle_name, client.comp_last_name) AS company_name,
+            client.comp_name AS company_name,
             client.comp_address,
             client.gst_no,
             client.manager_phone,

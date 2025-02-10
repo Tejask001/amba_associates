@@ -17,8 +17,8 @@ $sql = "
     orders.advance,
     orders.due,
     CASE 
-        WHEN client.id IS NOT NULL THEN CONCAT_WS(' ', client.comp_first_name, client.comp_middle_name, client.comp_last_name)
-        WHEN supplier.id IS NOT NULL THEN CONCAT_WS(' ', supplier.comp_first_name, supplier.comp_middle_name, supplier.comp_last_name)
+        WHEN client.id IS NOT NULL THEN client.comp_name
+        WHEN supplier.id IS NOT NULL THEN supplier.comp_name
         ELSE 'Unknown'
     END AS party_name
 FROM 

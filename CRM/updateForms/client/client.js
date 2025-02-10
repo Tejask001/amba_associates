@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert(data.message); // Display error message if provided
                 }
             })
-        // .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error:', error));
 
     });
 

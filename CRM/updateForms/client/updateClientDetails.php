@@ -1,5 +1,9 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (isset($_GET['trader_id'])) {
     $trader_id = $_GET['trader_id'];
 
@@ -174,36 +178,15 @@ if (isset($_GET['trader_id'])) {
 
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <label for="comp-first-name">Company First Name *</label>
-                    <input type="text" class="form-control" id="comp-first-name" name="comp-first-name"
-                        placeholder="First Name" value="<?php echo htmlspecialchars($row['comp_first_name']); ?>"
-                        pattern="^[A-Za-z0-9.]+$" required>
+                    <label for="comp-name">Company Name *</label>
+                    <input type="text" class="form-control" id="comp-name" name="comp-name"
+                        placeholder="First Name" value="<?php echo htmlspecialchars($row['comp_name']); ?>"
+                        pattern="^[A-Za-z0-9. ]+$" required>
                     <div class="invalid-feedback">
-                        <?php echo $errors['comp-first-name'] ?? 'Please Use AlphaNumerics Only'; ?>
+                        <?php echo $errors['comp-name'] ?? 'Please Use AlphaNumerics Only'; ?>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label for="comp-middle-name">Company Middle Name *</label>
-                    <input type="text" class="form-control" id="comp-middle-name" name="comp-middle-name"
-                        placeholder="Middle Name" value="<?php echo htmlspecialchars($row['comp_middle_name']); ?>"
-                        pattern="^[A-Za-z0-9.]+$" required>
-                    <div class="invalid-feedback">
-                        <?php echo $errors['comp-middle-name'] ?? 'Please Use AlphaNumerics Only'; ?>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label for="comp-last-name">Company Last Name *</label>
-                    <input type="text" class="form-control" id="comp-last-name" name="comp-last-name"
-                        placeholder="Last Name" value="<?php echo htmlspecialchars($row['comp_last_name']); ?>"
-                        pattern="^[A-Za-z0-9.]+$" required>
-                    <div class="invalid-feedback">
-                        <?php echo $errors['comp-last-name'] ?? 'Please Use AlphaNumerics Only'; ?>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-3">
                     <label for="comp-type">Company Type *</label>
                     <select class="form-select" id="comp-type" name="comp-type" aria-label="Default select example"
                         value="<?php echo htmlspecialchars($row['comp_type']); ?>">
@@ -214,19 +197,24 @@ if (isset($_GET['trader_id'])) {
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="comp-email">Company Email </label>
-                    <input type="email" class="form-control" id="comp-email" name="comp-email" placeholder="Email"
-                        value="<?php echo htmlspecialchars($row['comp_email']); ?>">
-                    <div class="invalid-feedback">
-                        <?php echo $errors['comp-email'] ?? 'Please Enter Valid Email'; ?>
-                    </div>
-                </div>
-                <div class="col-md-3">
                     <label for="comp-url">Company Website *</label>
                     <input type="url" class="form-control" id="comp-url" name="comp-url" placeholder="URL"
                         value="<?php echo htmlspecialchars($row['website']); ?>" required>
                     <div class="invalid-feedback">
                         <?php echo $errors['comp-url'] ?? 'Please Enter Valid URL'; ?>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row mb-3">
+
+                <div class="col-md-3">
+                    <label for="comp-email">Company Email </label>
+                    <input type="email" class="form-control" id="comp-email" name="comp-email" placeholder="Email"
+                        value="<?php echo htmlspecialchars($row['comp_email']); ?>">
+                    <div class="invalid-feedback">
+                        <?php echo $errors['comp-email'] ?? 'Please Enter Valid Email'; ?>
                     </div>
                 </div>
                 <div class="col-md-3">

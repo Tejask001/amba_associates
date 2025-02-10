@@ -16,26 +16,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Supplier variables
     $supp_first_name = test_input($_POST['supp-first-name']);
-    $supp_middle_name = test_input($_POST['supp-middle-name']);
+    $supp_middle_name = isset($_POST['supp-middle-name']) ? test_input($_POST['supp-middle-name']) : '';
     $supp_last_name = test_input($_POST['supp-last-name']);
-    $supp_dob = test_input($_POST['supp-dob']);
     $supp_phone = test_input($_POST['supp-phone']);
     $supp_email = test_input($_POST['supp-email']);
     $supp_address = test_input($_POST['supp-address']);
 
     // Company variables
-    $comp_first_name = test_input($_POST['comp-first-name']);
-    $comp_middle_name = test_input($_POST['comp-middle-name']);
-    $comp_last_name = test_input($_POST['comp-last-name']);
+    $comp_name = test_input($_POST['comp-name']);
+    // $comp_middle_name = test_input($_POST['comp-middle-name']);
+    // $comp_last_name = test_input($_POST['comp-last-name']);
     $comp_type = test_input($_POST['comp-type']);
     $comp_email = test_input($_POST['comp-email']);
     $comp_website = test_input($_POST['comp-url']);
     $comp_address = test_input($_POST['comp-address']);
 
     // Manager variables
-    $manager_first_name = test_input($_POST['manager-first-name']);
-    $manager_middle_name = test_input($_POST['manager-middle-name']);
-    $manager_last_name = test_input($_POST['manager-last-name']);
+    $manager_name = test_input($_POST['manager-name']);
     $manager_phone = test_input($_POST['manager-phone']);
     $manager_email = test_input($_POST['manager-email']);
 
@@ -69,15 +66,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Company details validation
-    if (empty($comp_first_name) || !preg_match("/^[A-Za-z0-9.]+$/", $comp_first_name)) {
-        $errors['comp-first-name'] = "Please enter a valid company first name using alphanumeric characters.";
+    if (empty($comp_name) || !preg_match("/^[A-Za-z0-9.]+$/", $comp_name)) {
+        $errors['comp-name'] = "Please enter a valid company first name using alphanumeric characters.";
     }
-    if (!empty($comp_middle_name) && !preg_match("/^[A-Za-z0-9.]+$/", $comp_middle_name)) {
-        $errors['comp-middle-name'] = "Please use alphanumeric characters only for middle name.";
-    }
-    if (empty($comp_last_name) || !preg_match("/^[A-Za-z0-9.]+$/", $comp_last_name)) {
-        $errors['comp-last-name'] = "Please enter a valid company last name using alphanumeric characters.";
-    }
+    // if (!empty($comp_middle_name) && !preg_match("/^[A-Za-z0-9.]+$/", $comp_middle_name)) {
+    //     $errors['comp-middle-name'] = "Please use alphanumeric characters only for middle name.";
+    // }
+    // if (empty($comp_last_name) || !preg_match("/^[A-Za-z0-9.]+$/", $comp_last_name)) {
+    //     $errors['comp-last-name'] = "Please enter a valid company last name using alphanumeric characters.";
+    // }
     if (empty($comp_email) || !filter_var($comp_email, FILTER_VALIDATE_EMAIL)) {
         $errors['comp-email'] = "Please enter a valid company email.";
     }
@@ -89,14 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Manager details validation
-    if (empty($manager_first_name) || !preg_match("/^[A-Za-z\s]+$/", $manager_first_name)) {
+    if (empty($manager_name) || !preg_match("/^[A-Za-z\s]+$/", $manager_name)) {
         $errors['manager-first-name'] = "Please enter a valid manager's first name using alphabets only.";
-    }
-    if (!empty($manager_middle_name) && !preg_match("/^[A-Za-z\s]+$/", $manager_middle_name)) {
-        $errors['manager-middle-name'] = "Please use alphabets only for manager's middle name.";
-    }
-    if (empty($manager_last_name) || !preg_match("/^[A-Za-z\s]+$/", $manager_last_name)) {
-        $errors['manager-last-name'] = "Please enter a valid manager's last name using alphabets only.";
     }
     if (empty($manager_phone) || !preg_match("/^\d{10}$/", $manager_phone)) {
         $errors['manager-phone'] = "Please enter a valid 10-digit manager's phone number.";
@@ -127,22 +118,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Insert or process form data
         $sql = "INSERT INTO `amba_associats`.`supplier` (
             `first_name`, `middle_name`, `last_name`, `phone`, `email`, `address`, 
-            `comp_first_name`, `comp_middle_name`, `comp_last_name`, `comp_type`, 
-            `manager_name`, `manager_phone`, `manager_email`, `chemical_license`, `comp_email`, `comp_address`, `trader_id`, `gst_no`, `pan_no`, `tan_no`, `website`, `remarks`
+            `comp_name`, `comp_type`, `manager_name`, `manager_phone`, `manager_email`, `chemical_license`, `comp_email`, `comp_address`, `trader_id`, `gst_no`, `pan_no`, `tan_no`, `website`, `remarks`
         ) VALUES (
             '$supp_first_name', '$supp_middle_name', '$supp_last_name', 
-            '$supp_phone', '$supp_email', '$supp_address', '$comp_first_name', 
-            '$comp_middle_name', '$comp_last_name', '$comp_type', '$manager_name', 
-            '$manager_phone', '$manager_email', '$comp_chemical_license', '$comp_email', '$comp_address', '$comp_trader_id', '$comp_gst_no', '$comp_pan_no', '$comp_tan_no', '$comp_website', '$remarks'
+            '$supp_phone', '$supp_email', '$supp_address', '$comp_name',  '$comp_type', '$manager_name', '$manager_phone', '$manager_email', '$comp_chemical_license', '$comp_email', '$comp_address', '$comp_trader_id', '$comp_gst_no', '$comp_pan_no', '$comp_tan_no', '$comp_website', '$remarks'
         )";
 
         // Execute the query
-        if ($con->query($sql) === true) {
+        if ($conn->query($sql) === true) {
             echo json_encode(['success' => true, 'message' => 'Submission Successful']);
             //echo "Submission Successful";
         } else {
-            // echo json_encode(['success' => false, 'message' => 'Database error: ' . strip_tags($con->error)]);
-            echo  "$con->error";
+            echo  "$conn->error";
         }
         //echo json_encode(['success' => true, 'message' => 'Submission Successful']);
     } else {
@@ -304,8 +291,8 @@ function test_input($data)
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label for="supp-phone" class="form-label">Supplier's Phone *</label>
-                    <input type="text" class="form-control" id="supp-phone" name="supp-phone" placeholder="Phone Number"
-                        pattern="^\d{10}$" min="10" max="10" required>
+                    <input type="text" class="form-control" id="supp-phone" name="supp-phone"
+                        placeholder="Phone Number" pattern="^\d{10}$" min="10" max="10" required>
                     <div class="invalid-feedback">
                         <?php echo $errors['supp-phone'] ?? 'Please Enter 10 Digit Phone Number'; ?>
                     </div>
@@ -320,8 +307,8 @@ function test_input($data)
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="supp-address" class="form-label">Supplier's Address *</label>
-                    <input type="text" class="form-control" id="supp-address" name="supp-address" placeholder="Address"
-                        required>
+                    <input type="text" class="form-control" id="supp-address" name="supp-address"
+                        placeholder="Address" required>
                     <div class="invalid-feedback">
                         Please Enter Address
                     </div>
@@ -331,31 +318,16 @@ function test_input($data)
             <!-- company details -->
 
             <div class="row">
-                <div class="col-md-3 mb-3">
-                    <label for="comp-first-name" class="form-label">Company First Name *</label>
-                    <input type="text" class="form-control" id="comp-first-name" name="comp-first-name"
+                <div class="col-md-5 mb-3">
+                    <label for="comp-name" class="form-label">Company Name *</label>
+                    <input type="text" class="form-control" id="comp-name" name="comp-name"
                         placeholder="First Name" pattern="^[A-Za-z0-9.]+$" required>
                     <div class="invalid-feedback">
-                        <?php echo $errors['comp-first-name'] ?? 'Please Use AlphaNumerics Only'; ?>
+                        <?php echo $errors['comp-name'] ?? 'Please Use AlphaNumerics Only'; ?>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <label for="comp-middle-name" class="form-label">Company Middle Name</label>
-                    <input type="text" class="form-control" id="comp-middle-name" name="comp-middle-name"
-                        placeholder="Middle Name" pattern="^[A-Za-z0-9.]+$">
-                    <div class="invalid-feedback">
-                        <?php echo $errors['comp-middle-name'] ?? 'Please Use AlphaNumerics Only'; ?>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="comp-last-name" class="form-label">Company Last Name *</label>
-                    <input type="text" class="form-control" id="comp-last-name" name="comp-last-name"
-                        placeholder="Last Name" pattern="^[A-Za-z0-9.]+$" required>
-                    <div class="invalid-feedback">
-                        <?php echo $errors['comp-last-name'] ?? 'Please Use AlphaNumerics Only'; ?>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
+
+                <div class="col-md-4 mb-3">
                     <label for="comp-type" class="form-label">Company Type *</label>
                     <select class="form-select" id="comp-type" name="comp-type" aria-label="Default select example">
                         <option selected>Corporation</option>
@@ -364,7 +336,16 @@ function test_input($data)
                         <option value="3">Limited Liability Companies (LLC)</option>
                     </select>
                 </div>
+                <div class="col-md-3 mb-3">
+                    <label for="comp-url" class="form-label">Company Website *</label>
+                    <input type="url" class="form-control" id="comp-url" name="comp-url" placeholder="URL" required>
+                    <div class="invalid-feedback">
+                        <?php echo $errors['comp-url'] ?? 'Please Enter Valid URL'; ?>
+                    </div>
+                </div>
+
             </div>
+
 
             <div class="row">
                 <div class="col-md-4 mb-3">
@@ -372,13 +353,6 @@ function test_input($data)
                     <input type="email" class="form-control" id="comp-email" name="comp-email" placeholder="Email">
                     <div class="invalid-feedback">
                         <?php echo $errors['comp-email'] ?? 'Please Enter Valid Email'; ?>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="comp-url" class="form-label">Company Website *</label>
-                    <input type="url" class="form-control" id="comp-url" name="comp-url" placeholder="URL" required>
-                    <div class="invalid-feedback">
-                        <?php echo $errors['comp-url'] ?? 'Please Enter Valid URL'; ?>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
