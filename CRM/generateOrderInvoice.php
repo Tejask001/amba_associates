@@ -119,10 +119,10 @@ $pdf->AddPage();
 $pdf->SetFont('Arial', 'B', 11);
 
 // --- Logo Image ---
-$logoPath = './assets/images/logo.jpeg'; // Path to your logo image
+$logoPath = './assets/images/mehak-logo.png'; // Path to your logo image
 $logoX = 10;          // X-coordinate for the logo
 $logoY = 10;          // Y-coordinate for the logo
-$logoWidth = 30;      // Width of the logo (adjust as needed)
+$logoWidth = 40;      // Width of the logo (adjust as needed)
 
 // Check if the logo file exists
 if (file_exists($logoPath)) {
@@ -134,7 +134,7 @@ if (file_exists($logoPath)) {
 }
 
 // Adjust cell position to account for the logo space
-$pdf->SetXY($logoX + $logoWidth + 105, $logoY); // Move to the right of the logo
+$pdf->SetXY($logoX + $logoWidth + 95, $logoY); // Move to the right of the logo
 // --- Dealer Details ---
 $pdf->SetFont('Arial', 'B', 11);
 $pdf->Cell(135, 5, 'Dealer Details', 0, 1, 'R');
