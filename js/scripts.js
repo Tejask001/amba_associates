@@ -101,12 +101,12 @@ function loadCart() {
                 let row = `
                 <tr>
                     <td>
-                        <img src="assets/img/${product.image}" alt="${product.general_name}" class="cart-item-image">
+                        <img src="./CRM/assets/images/${product.image}" alt="${product.general_name}" class="cart-item-image">
                         ${product.general_name}
                     </td>
                     <td>₹${product.sp}</td>
                     <td>
-                        <input type="number" min="1" value="${quantity}" onchange="updateCartItemQuantity('${product.batch_code}', this.value)" style="width: 50px;">
+                        <input type="number" min="1" value="${quantity}" onchange="updateCartItemQuantity('${product.batch_code}', this.value)" style="width: 50px; text-align: center;">
                     </td>
                     <td>₹${itemTotal.toFixed(2)}</td>
                     <td>

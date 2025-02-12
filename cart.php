@@ -16,8 +16,8 @@
     <style>
         .cart-item-image {
             max-width: 80px;
-            /* Adjust as needed */
-            height: auto;
+            height: 80px;
+            object-fit: scale-down;
         }
     </style>
 </head>

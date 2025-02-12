@@ -21,7 +21,7 @@ if ($order_result->num_rows != 1) {
 $order = $order_result->fetch_assoc();
 
 // Fetch order items
-$order_items_sql = "SELECT oi.*, p.general_name, p.chemical_name, p.chemical_size, p.pp, p.sp, p.mrgp, p.product_life FROM order_items oi
+$order_items_sql = "SELECT oi.*, p.general_name, p.chemical_name, p.chemical_size, p.pp, p.sp, p.mrgp, p.tax_percent, p.product_life FROM order_items oi
                     LEFT JOIN product p ON oi.batch_code = p.batch_code
                     WHERE oi.order_id = '$order_id'";
 $order_items_result = $conn->query($order_items_sql);
@@ -32,7 +32,7 @@ while ($row = $order_items_result->fetch_assoc()) {
 }
 
 // Fetch products for the dropdown (same as in add order page)
-$products_result = $conn->query("SELECT product_code, general_name, chemical_name, chemical_size, pp, sp, mrgp, product_life, batch_code FROM product");
+$products_result = $conn->query("SELECT product_code, general_name, chemical_name, chemical_size, pp, sp, mrgp, tax_percent, product_life, batch_code FROM product");
 $products = [];
 while ($row = $products_result->fetch_assoc()) {
     $products[] = $row;
@@ -219,10 +219,10 @@ while ($row = $products_result->fetch_assoc()) {
                         <select id="client_id" name="client_id" class="form-select to-fill" required>
                             <option value="">Select Client</option>
                             <?php
-                            $clients_result = $conn->query("SELECT id, CONCAT(comp_first_name, ' ', comp_middle_name, ' ', comp_last_name) AS company_name FROM client");
+                            $clients_result = $conn->query("SELECT id, comp_name FROM client");
                             while ($row = $clients_result->fetch_assoc()) {
                                 $selected = ($row['id'] == $order['client_id']) ? 'selected' : '';
-                                echo "<option value='{$row['id']}' $selected>{$row['company_name']}</option>";
+                                echo "<option value='{$row['id']}' $selected>{$row['comp_name']}</option>";
                             }
                             ?>
                         </select>

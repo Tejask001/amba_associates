@@ -9,7 +9,7 @@ $order_type = "Sale";
 
 // Fetch products for the dropdown
 $products_result = $conn->query("
-    SELECT 
+    SELECT
         product_code,
         general_name,
         chemical_name,
@@ -17,9 +17,10 @@ $products_result = $conn->query("
         pp,
         sp,
         mrgp,
+        tax_percent,
         product_life,
         batch_code
-    FROM 
+    FROM
         product
 ");
 
@@ -206,7 +207,7 @@ while ($row = $products_result->fetch_assoc()) {
                         <select id="client_id" name="client_id" class="form-select to-fill" required>
                             <option value="">Select Client</option>
                             <?php
-                            $clients_result = $conn->query("SELECT id, CONCAT(comp_first_name, ' ', comp_middle_name, ' ', comp_last_name) AS company_name FROM client");
+                            $clients_result = $conn->query("SELECT id, comp_name AS company_name FROM client");
                             while ($row = $clients_result->fetch_assoc()) {
                                 echo "<option value='{$row['id']}'>{$row['company_name']}</option>";
                             }
@@ -263,7 +264,7 @@ while ($row = $products_result->fetch_assoc()) {
                             <select name="product[]" class="form-select product-select to-fill" required>
                                 <option value="">Select Product</option>
                                 <?php foreach ($products as $product) { ?>
-                                    <option value='<?php echo json_encode($product); ?>'>
+                                    <option value='<?php echo htmlspecialchars(json_encode($product)); ?>'>
                                         <?php echo htmlspecialchars($product['general_name']); ?>
                                     </option>
                                 <?php } ?>
@@ -320,27 +321,27 @@ while ($row = $products_result->fetch_assoc()) {
                         </div>
                         <div class="col-md-2">
                             <label for="tax_percent" class="form-label">Tax Amount (%)</label>
-                            <input type="number" step="0.01" name="tax_percent[]" class="form-control tax-percent to-fill" min="0" required>
+                            <input type="number" step="0.01" name="tax_percent[]" class="form-control tax-percent read-only" readonly>
                         </div>
                         <div class="col-md-2">
                             <label for="cgst" class="form-label">CGST</label>
                             <div class="input-group">
                                 <span class="input-group-text">₹</span>
-                                <input type="number" step="0.01" name="cgst[]" class="form-control cgst" readonly>
+                                <input type="number" step="0.01" name="cgst[]" class="form-control cgst read-only " readonly>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label for="sgst" class="form-label">SGST</label>
                             <div class="input-group">
                                 <span class="input-group-text">₹</span>
-                                <input type="number" step="0.01" name="sgst[]" class="form-control sgst" readonly>
+                                <input type="number" step="0.01" name="sgst[]" class="form-control sgst read-only" readonly>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label for="igst" class="form-label">IGST</label>
                             <div class="input-group">
                                 <span class="input-group-text">₹</span>
-                                <input type="number" step="0.01" name="igst[]" class="form-control igst" readonly>
+                                <input type="number" step="0.01" name="igst[]" class="form-control igst read-only" readonly>
                             </div>
                         </div>
                     </div>
@@ -351,14 +352,14 @@ while ($row = $products_result->fetch_assoc()) {
                             <label for="billing_amount" class="form-label">Billing Amount</label>
                             <div class="input-group">
                                 <span class="input-group-text">₹</span>
-                                <input type="number" step="0.01" name="billing_amount[]" class="form-control billing-amount" readonly>
+                                <input type="number" step="0.01" name="billing_amount[]" class="form-control billing-amount read-only" readonly>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label for="profit" class="form-label">Profit</label>
                             <div class="input-group">
                                 <span class="input-group-text">₹</span>
-                                <input type="number" step="0.01" name="profit[]" class="form-control profit" readonly>
+                                <input type="number" step="0.01" name="profit[]" class="form-control profit read-only" readonly>
                             </div>
                         </div>
                         <div class="col-md-3 d-flex align-items-end">
@@ -434,6 +435,7 @@ while ($row = $products_result->fetch_assoc()) {
                 const billingAmount = totalAfterFreight + taxTotal;
 
                 // Update the fields
+                row.find('.tax-percent').val(taxAmount.toFixed(2)); // Corrected line: Use taxAmount from product data
                 row.find('.cgst').val(cgst.toFixed(2));
                 row.find('.sgst').val(sgst.toFixed(2));
                 row.find('.igst').val(igst.toFixed(2));
@@ -449,6 +451,7 @@ while ($row = $products_result->fetch_assoc()) {
                     const product = JSON.parse(productData);
                     const row = $(this).closest('.order-item');
                     row.find('.batch-code').val(product.batch_code);
+                    row.find('.tax-percent').val(product.tax_percent);
                     row.find('.cost-price-per-unit').val(product.pp);
                     row.find('.selling-price-per-unit').val(product.sp);
 
@@ -458,7 +461,7 @@ while ($row = $products_result->fetch_assoc()) {
             });
 
             // Event listener for changes in quantity, selling price, discount, freight, tax type, tax amount
-            $(document).on('input change', '.quantity, .selling-price-per-unit, .discount, .freight, .tax-type, .tax-percent', function() {
+            $(document).on('input change', '.quantity, .selling-price-per-unit, .discount, .freight, .tax-type', function() {
                 const row = $(this).closest('.order-item');
                 calculateBilling(row);
             });
@@ -477,7 +480,7 @@ while ($row = $products_result->fetch_assoc()) {
                             <select name="product[]" class="form-select product-select to-fill" required>
                                 <option value="">Select Product</option>
                                 <?php foreach ($products as $product) { ?>
-                                    <option value='<?php echo json_encode($product); ?>'>
+                                    <option value='<?php echo htmlspecialchars(json_encode($product)); ?>'>
                                         <?php echo htmlspecialchars($product['general_name']); ?>
                                     </option>
                                 <?php } ?>
@@ -534,27 +537,27 @@ while ($row = $products_result->fetch_assoc()) {
                         </div>
                         <div class="col-md-2">
                             <label for="tax_percent" class="form-label">Tax Amount (%)</label>
-                            <input type="number" step="0.01" name="tax_percent[]" class="form-control tax-percent to-fill" min="0" required>
+                            <input type="number" step="0.01" name="tax_percent[]" class="form-control tax-percent read-only" min="0" readonly>
                         </div>
                         <div class="col-md-2">
                             <label for="cgst" class="form-label">CGST</label>
                             <div class="input-group">
                                 <span class="input-group-text">₹</span>
-                                <input type="number" step="0.01" name="cgst[]" class="form-control cgst" readonly>
+                                <input type="number" step="0.01" name="cgst[]" class="form-control cgst read-only" readonly>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label for="sgst" class="form-label">SGST</label>
                             <div class="input-group">
                                 <span class="input-group-text">₹</span>
-                                <input type="number" step="0.01" name="sgst[]" class="form-control sgst" readonly>
+                                <input type="number" step="0.01" name="sgst[]" class="form-control sgst read-only" readonly>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label for="igst" class="form-label">IGST</label>
                             <div class="input-group">
                                 <span class="input-group-text">₹</span>
-                                <input type="number" step="0.01" name="igst[]" class="form-control igst" readonly>
+                                <input type="number" step="0.01" name="igst[]" class="form-control igst read-only" readonly>
                             </div>
                         </div>
                     </div>
@@ -565,14 +568,14 @@ while ($row = $products_result->fetch_assoc()) {
                             <label for="billing_amount" class="form-label">Billing Amount</label>
                             <div class="input-group">
                                 <span class="input-group-text">₹</span>
-                                <input type="number" step="0.01" name="billing_amount[]" class="form-control billing-amount" readonly>
+                                <input type="number" step="0.01" name="billing_amount[]" class="form-control billing-amount read-only" readonly>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label for="profit" class="form-label">Profit</label>
                             <div class="input-group">
                                 <span class="input-group-text">₹</span>
-                                <input type="number" step="0.01" name="profit[]" class="form-control profit" readonly>
+                                <input type="number" step="0.01" name="profit[]" class="form-control profit read-only" readonly>
                             </div>
                         </div>
                         <div class="col-md-3 d-flex align-items-end">
