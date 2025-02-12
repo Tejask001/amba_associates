@@ -254,8 +254,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .login-container .logo {
             display: flex;
             justify-content: center;
-            margin-bottom: 30px;
-            /* Increased margin */
         }
 
         .login-container .logo img {
@@ -344,7 +342,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light nav-custom-color col-12">
             <div class="container px-4 px-lg-5 ">
-                <a class="navbar-brand" href="../index.html">Amba Associates</a>
+                <a class="navbar-brand" href="../index.html">Mehak Enterprises</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -373,7 +371,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- login container -->
         <div class="login-container col-12" style="margin-top: 20px; margin-bottom: 30px">
             <div class="logo w-100">
-                <img src="./assets/images/logo.jpeg" alt="Company Logo">
+                <img src="./assets/images/mehak-logo.png" alt="Company Logo">
             </div>
             <h2>Login</h2>
             <?php if (!empty($error))

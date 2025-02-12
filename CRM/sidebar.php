@@ -13,15 +13,9 @@
     }
 
     #sidebar img {
-        width: 150px;
-        /* Adjust logo size as needed */
-        display: block;
-        /* Makes the image a block element */
+        width: 120px;
         margin-left: auto;
         margin-right: auto;
-        /* Center the logo */
-        margin-bottom: 40px;
-        /* Space below the logo */
     }
 
     #sidebar h4 {
@@ -105,9 +99,9 @@
     }
 
     #sidebar .logout .btn-danger {
-        width: 90%;
+        width: 75%;
         /* Make the button width consistent with menu items */
-        padding: 10px 20px;
+        /* padding: 10px 20px; */
         /* Adjust padding as needed */
         font-size: 18px;
         /* Match font size with menu items */
@@ -131,9 +125,9 @@
 </style>
 <!-- Sidebar -->
 <div id="sidebar" class="col-2 d-flex flex-column text-white vh-100 p-0">
-    <div class="text-center py-3">
-        <img src="./assets/images/logo.jpeg" alt="Logo" class="img-fluid mb-4 mt-4" style="width: 200px;">
-        <!-- <h4>Amba Associates</h4> -->
+    <div class="text-center py-3 row">
+        <img src="./assets/images/logo-notext.png" alt="Logo" class="img-fluid col-12">
+        <strong class="col-12" style="font-size: 24px;">MEHAK ENTERPRISES</strong>
     </div>
     <ul class="list-group list-group-flush">
         <a href="revenue.php">

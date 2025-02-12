@@ -92,14 +92,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </nav>
 
-
-    <!-- Header-->
-
-    <header>
-        <div style="width: 100%; height: 400px; background-image: url('./assets/Mystery-Chemical.jpg');">
-        </div>
-    </header>
-    <!-- Section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5" style="
         max-width: 600px;

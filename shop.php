@@ -10,7 +10,7 @@ $products_data = $products;
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Shop Homepage</title>
+    <title>Shop - Mehak Enterprises</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
@@ -147,7 +147,7 @@ $products_data = $products;
     <!-- Navigation (Same as before) -->
     <nav class="navbar navbar-expand-lg navbar-light nav-custom-color">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="./index.html">Amba Associates</a>
+            <a class="navbar-brand" href="./index.html">Mehak Enterprises</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -166,12 +166,6 @@ $products_data = $products;
             </div>
         </div>
     </nav>
-
-    <!-- Header (Same as before) -->
-    <header>
-        <div style="width: 100%; height: 400px; background-image: url('./assets/Mystery-Chemical.jpg');">
-        </div>
-    </header>
 
     <!-- Section -->
     <section class="py-5">

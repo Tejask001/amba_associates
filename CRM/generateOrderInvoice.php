@@ -143,7 +143,7 @@ $pdf->Cell(135, 5, 'Dealer Details', 0, 1, 'R');
 $pdf->SetFont('Arial', '', 10);
 
 $pdf->Cell(135, 5, '', 0, 0, 'L');
-$pdf->Cell(135, 5, 'Company Name: Amba Associats', 0, 1, 'R');
+$pdf->Cell(135, 5, 'Company Name: Mehak Enterprises', 0, 1, 'R');
 
 $pdf->Cell(135, 5, '', 0, 0, 'L');
 $pdf->Cell(135, 5, 'Phone: +91-9999365643', 0, 1, 'R');

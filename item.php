@@ -16,7 +16,7 @@ if ($product === null) {
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>
-        <?php echo $product['general_name']; ?> - Shop Item
+        <?php echo $product['general_name']; ?> - Shop Item - Mehak Enterprises
     </title> <!-- Dynamic Title -->
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -37,7 +37,7 @@ if ($product === null) {
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light nav-custom-color">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="./index.html">Amba Associates</a>
+            <a class="navbar-brand" href="./index.html">Mehak Enterprises</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
