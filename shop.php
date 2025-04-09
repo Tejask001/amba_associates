@@ -8,199 +8,240 @@ $products_data = $products;
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="Shop premium chemical products at Mehak Enterprises - Your trusted chemical trading partner" />
+    <meta name="author" content="Mehak Enterprises" />
     <title>Shop - Mehak Enterprises</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Custom styles -->
     <style>
-        /* --- Custom Styles --- */
         :root {
             --primary-color: #0284c7;
-            /* Define primary color as a CSS variable */
+            --secondary-color: #0369a1;
         }
 
-        a.item {
-            text-decoration: none;
-            color: inherit;
+        body {
+            background-color: #f8f9fa;
         }
 
-        .btn-primary {
-            /* Use Bootstrap's btn-primary class */
+        .nav-custom-color {
             background-color: var(--primary-color);
-            border-color: var(--primary-color);
         }
 
-        .btn-primary:hover {
-            background-color: #026cc7;
-            /* Darker shade on hover */
-            border-color: #026cc7;
+        .navbar-brand,
+        .nav-link {
+            color: white !important;
         }
 
-        .btn-outline-primary {
-            /* Outline variant */
-            color: var(--primary-color);
-            border-color: var(--primary-color);
+        .nav-link:hover {
+            color: rgba(255, 255, 255, 0.8) !important;
         }
 
-        .btn-outline-primary:hover {
-            background-color: var(--primary-color);
+        .page-header {
+            background: linear-gradient(rgba(2, 132, 199, 0.8), rgba(3, 105, 161, 0.9)),
+                url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 0;
+            margin-bottom: 3rem;
             color: white;
-            border-color: #0284c7;
-        }
-
-        .disabled-btn {
-            background-color: #0284c796;
-            color: white;
-            cursor: not-allowed;
-            border-color: #0284c796;
-            /* Add border color for consistency */
-        }
-
-        .disabled-btn:hover {
-            /* Consistent hover, even if disabled */
-            background-color: #0284c796;
-            border-color: #0284c796;
-            color: white;
-            cursor: not-allowed;
+            text-align: center;
         }
 
         .card {
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-            /* Subtle shadow */
-            transition: transform 0.2s ease-in-out;
-            /* Smooth transform on hover */
             border: none;
-            /* Remove default border */
+            border-radius: 12px;
             overflow: hidden;
-            /* Hide overflowing content */
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .card:hover {
             transform: translateY(-5px);
-            /* Lift card slightly on hover */
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-            /* Stronger shadow on hover */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            padding-top: 75%;
+            overflow: hidden;
+            background-color: #f8f9fa;
         }
 
         .card-img-top {
-            transition: transform 0.3s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 150px;
+            height: 100%;
             object-fit: contain;
+            padding: 1rem;
+            transition: transform 0.3s ease;
         }
 
         .card:hover .card-img-top {
-            transform: scale(1.1);
-            /* Slightly zoom image on hover */
+            transform: scale(1.05);
         }
 
         .card-body {
-            padding: 1.25rem;
+            padding: 1.5rem;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
         .card-title {
             font-size: 1.25rem;
-            /* Larger title */
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--secondary-color);
+        }
+
+        .price {
+            font-size: 1.5rem;
             font-weight: bold;
-            /* Bold title */
-            margin-bottom: 0.5rem;
-            /* Space below title */
-            overflow: hidden;
-            /* Hide overflowing text */
-            text-overflow: ellipsis;
-            /* Add ellipsis for long titles */
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            /* Limit to 2 lines */
-            -webkit-box-orient: vertical;
-        }
-
-        .card-text {
+            color: var(--primary-color);
             margin-bottom: 1rem;
-            font-size: 1rem;
         }
 
+        .stock-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 2;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .btn-shop {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-shop.btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-shop.btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-shop.disabled {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .cart-btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .cart-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
 
         .card-footer {
-            padding: 0.75rem 1.25rem;
-            background-color: rgba(0, 0, 0, 0.03);
-            /* Very light background */
-            border-top: 1px solid rgba(0, 0, 0, 0.125);
-            /* Subtle border */
-        }
-
-        .view-details-link {
-            margin-top: auto;
-            /* Push to the bottom */
-            text-align: center;
-            /* Center the link */
+            background-color: transparent;
+            border-top: none;
+            padding: 1rem 1.5rem;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation (Same as before) -->
-    <nav class="navbar navbar-expand-lg navbar-light nav-custom-color">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="./index.html">Mehak Enterprises</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg nav-custom-color fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="./index.html">
+                <i class="bi bi-building fs-3 me-2"></i>
+                <strong>MEHAK ENTERPRISES</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="./index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active " href="./shop.php">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="./shop.php">Shop</a></li>
                     <li class="nav-item"><a class="nav-link" href="./feedback.php">Feedback</a></li>
                     <li class="nav-item"><a class="nav-link" href="./CRM/index.php">CRM</a></li>
                 </ul>
-                <form class="d-flex" action="cart.php">
-                    <button class="btn btn-outline-dark" type="submit">
-                        <i class="bi-cart-fill me-1"></i>
+                <a href="./cart.php">
+                    <button class="cart-btn btn rounded-pill px-4 py-2 d-flex align-items-center">
+                        <i class="bi bi-cart3 me-2"></i>
                         Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill cart-count">0</span>
+                        <span class="badge bg-primary ms-2 cart-count">0</span>
                     </button>
-                </form>
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Section -->
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Our Products</h1>
+            <p class="lead mb-0">Discover our premium range of chemical products</p>
+        </div>
+    </header>
+
+    <!-- Products Section -->
     <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="container">
+            <div class="row g-4">
                 <?php foreach ($products_data as $product): ?>
                     <?php $out_of_stock = ($product['stock_quantity'] == 0); ?>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Image -->
-                            <img class="card-img-top" src="CRM/assets/images/<?php echo $product['image']; ?>" alt="<?php echo $product['general_name']; ?>" />
-
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <!-- Product Name -->
-                                    <h5 class="card-title"><?php echo $product['general_name']; ?></h5>
-                                    <p class="card-text">₹ <?php echo $product['sp']; ?></p>
-                                    <!-- View Details Link -->
-                                    <div class="view-details-link">
-                                        <a href="item.php?batch_code=<?php echo $product['batch_code']; ?>" class="btn btn-outline-primary">View Details</a>
-                                    </div>
-                                </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                        <div class="card">
+                            <?php if ($out_of_stock): ?>
+                                <div class="stock-badge bg-danger">Out of Stock</div>
+                            <?php endif; ?>
+                            <div class="card-img-wrapper">
+                                <img class="card-img-top"
+                                    src="CRM/assets/images/<?php echo $product['image']; ?>"
+                                    alt="<?php echo $product['general_name']; ?>" />
                             </div>
-
-                            <!-- Card Footer -->
-                            <div class="card-footer">
-                                <div class="text-center">
-                                    <?php if ($out_of_stock): ?>
-                                        <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem;">Out of Stock</div>
-                                        <a class="btn disabled-btn" href="#">Out of Stock</a>
-                                    <?php else: ?>
-                                        <button class="btn btn-primary" onclick="addToCart('<?php echo $product['batch_code']; ?>'); return false;">Add to Cart</button>
-                                    <?php endif; ?>
-                                </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title"><?php echo $product['general_name']; ?></h5>
+                                <div class="price">₹<?php echo number_format($product['sp'], 2); ?></div>
+                                <a href="item.php?batch_code=<?php echo $product['batch_code']; ?>"
+                                    class="btn btn-shop btn-outline-primary mb-3">View Details</a>
+                            </div>
+                            <div class="card-footer text-center">
+                                <?php if ($out_of_stock): ?>
+                                    <button class="btn btn-shop disabled w-100" disabled>Out of Stock</button>
+                                <?php else: ?>
+                                    <button class="btn btn-shop btn-primary w-100"
+                                        onclick="addToCart('<?php echo $product['batch_code']; ?>')">
+                                        <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -209,15 +250,25 @@ $products_data = $products;
         </div>
     </section>
 
-    <!-- Footer (Same as before) -->
-    <footer class="py-5 nav-custom-color">
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright © Your Website 2023</p>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h5>Contact Us</h5>
+                    <p><i class="bi bi-geo-alt me-2"></i>123 Chemical Lane, Industrial Area</p>
+                    <p><i class="bi bi-envelope me-2"></i>info@mehakenterprises.com</p>
+                    <p><i class="bi bi-telephone me-2"></i>+91 123 456 7890</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <p class="mb-0">© 2024 Mehak Enterprises. All rights reserved.</p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Bootstrap core JS and your custom script (Same as before) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/scripts.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

@@ -4,199 +4,264 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="Mehak Enterprises - Premier Chemical Trading Company" />
+    <meta name="author" content="Mehak Enterprises" />
     <title>Mehak Enterprises</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet" />
     <style>
-        a.item {
-            text-decoration: none;
-            color: inherit;
-            /* Optional: Ensures link inherits the text color */
+        :root {
+            --primary-color: #0284c7;
+            --secondary-color: #0369a1;
         }
 
-        .card {
-            border: solid 1px;
+        .nav-custom-color {
+            background-color: var(--primary-color);
         }
 
-        #banner-data>.col-3 {
+        .navbar-brand,
+        .nav-link {
+            color: white !important;
+        }
+
+        .nav-link:hover {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-        }
-
-        #banner-data>.col-3>h2 {
-            font-size: 4.8rem;
-        }
-
-        #banner-data>.col-12 {
-            display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
         }
 
-        #banner-data>.col-12>h2 {
-            font-size: 4.8rem;
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
         }
 
-        .container {
-            width: 1200px;
+        .stats-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
         }
 
-        p {
-            font-size: 1.25rem;
-            font-weight: 300;
-            text-align: justify;
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
 
         h1 {
-            font-size: 5rem;
+            color: var(--primary-color);
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
             text-align: center;
-            margin-bottom: 20px;
-            color: #0284c7;
+        }
+
+        .about-section,
+        .expertise-section {
+            padding: 5rem 0;
+        }
+
+        .section-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            text-align: justify;
+        }
+
+        .clients-map {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .clients-map h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .cart-btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .cart-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
         }
     </style>
 </head>
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light nav-custom-color">
-        <div class="container px-4 px-lg-5 ">
-            <a class="navbar-brand" href="./index.html"><img src="./assets/img/logo-notext.png" style="width: 60px;">
-                <strong>MEHAK ENTERPRISES</strong></a>
+    <nav class="navbar navbar-expand-lg nav-custom-color fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="./index.html">
+                <img src="./assets/img/logo-notext.png" style="width: 50px;"><strong>MEHAK ENTERPRISES</strong>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.html">Home</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="./index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="./shop.php">Shop</a></li>
                     <li class="nav-item"><a class="nav-link" href="./feedback.php">Feedback</a></li>
                     <li class="nav-item"><a class="nav-link" href="./CRM/index.php">CRM</a></li>
                 </ul>
-                <form class="d-flex" action="cart.php">
-                    <button class="btn btn-outline-dark" type="submit">
-                        <i class="bi-cart-fill me-1"></i>
+                <a href="./cart.php">
+                    <button class="cart-btn btn rounded-pill px-4 py-2 d-flex align-items-center">
+                        <i class="bi bi-cart3 me-2"></i>
                         Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill cart-count">0</span>
+                        <span class="badge bg-primary ms-2">0</span>
                     </button>
-                </form>
+                </a>
             </div>
         </div>
     </nav>
 
-
-    <!-- Header-->
-
-    <header>
-        <div style="width: 100%; height: 400px; background-image: url('./assets/img/Mystery-Chemical.jpg');">
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="display-4 text-white mb-4 mt-5">Leading Chemical Solutions Provider</h1>
+            <p class="lead mb-4">Delivering quality chemicals and expert solutions to industries worldwide</p>
+            <a href="./shop.php" class="btn btn-light btn-lg px-5 py-3">Explore Products</a>
         </div>
     </header>
-    <!-- Section-->
-    <section class="py-5">
-        <div class="row justify-content-center">
 
-            <div class="container px-4 mx-auto">
-                <h1>About Us</h1>
-                <p class="ms-4 me-4">
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <h1>About Us</h1>
+            <div class="section-text">
+                <p class="mb-4">
                     Mehak Enterprises is a premier chemical trading company with a proven track record of delivering
                     high-quality chemicals to businesses across the globe. Founded on the principles of integrity,
                     reliability, and customer satisfaction, we have established ourselves as a trusted partner for
-                    industries ranging from manufacturing and pharmaceuticals to agriculture and water treatment. Our
-                    commitment to excellence drives us to continuously source and supply superior chemicals while
-                    providing unparalleled customer service.
-                    Since our inception [mention founding year, if applicable], Mehak Enterprises has steadily grown
-                    from
-                    a [mention initial scope, e.g., regional supplier] to a globally recognized name in the chemical
-                    trading industry. This growth has been fueled by our unwavering dedication to our core values and
-                    our ability to adapt to the ever-evolving needs of the market. Over the years, we have cultivated
-                    strong relationships with leading chemical manufacturers worldwide, enabling us to offer an
-                    extensive and diverse portfolio of products to our valued clients. We are proud of the journey we
-                    have undertaken and remain committed to building upon our legacy of success, forging new
-                    partnerships, and expanding our reach to serve even more businesses with distinction.
-
+                    industries ranging from manufacturing and pharmaceuticals to agriculture and water treatment.
+                </p>
+                <p>
+                    Our commitment to excellence drives us to continuously source and supply superior chemicals while
+                    providing unparalleled customer service. Since our inception, Mehak Enterprises has steadily grown
+                    to become a globally recognized name in the chemical trading industry.
                 </p>
             </div>
-
-            <!-- Numbers banner -->
-            <div class="section section-work-data nav-custom-color justify-content-center py-2 mb-5 mt-5">
-                <div class="container grid grid-four-column">
-                    <div id="banner-data" class="row">
-                        <div class="col-3">
-                            <h2 class="counter-numbers" data-number="50">20+</h2>
-                            <p>Years Completed</p>
-                        </div>
-                        <div class="col-3">
-                            <h2 class="counter-numbers" data-number="20">1000+</h2>
-                            <p>Orders Completed</p>
-                        </div>
-                        <div class="col-3">
-                            <h2 class="counter-numbers" data-number="100">40+</h2>
-                            <p>Happy Customers</p>
-                        </div>
-                        <div class="col-3">
-                            <h2 class="counter-numbers" data-number="100">50+</h2>
-                            <p>Products</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container px-4 mx-auto">
-                <h1>Our Expertise</h1>
-                <p class="ms-4 me-4">
-                    We are a premier chemical trading company with a proven track record of delivering
-                    high-quality chemicals to businesses across the globe. Founded on the principles of integrity,
-                    reliability, and customer satisfaction. Our
-                    commitment to excellence drives us to continuously supply superior chemicals while providing
-                    unparalleled customer service.
-                    At Mehak Enterprises, we are more than just a supplier; we are a solutions provider. Our team
-                    comprises seasoned industry experts with in-depth knowledge of chemical applications and market
-                    trends. We leverage this expertise to understand the unique challenges and requirements of each
-                    client, offering tailored solutions that optimize their operations and drive their success. Whether
-                    you need a specific chemical compound, a customized blend, or expert advice on product selection and
-                    usage, Mehak Enterprises is your go-to resource for informed guidance and reliable support. We are
-                    dedicated to helping our clients achieve their goals by providing them with the right chemical
-                    solutions, precisely when and where they need them.
-
-                </p>
-            </div>
-
-            <!-- MAP BANNER-->
-            <div class="section section-work-data nav-custom-color justify-content-center py-2 mt-5">
-                <div class="container">
-                    <div id="banner-data" class="row ">
-                        <div class="col-12">
-                            <h2>Our Clients</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section d-flex justify-content-center py-2 mb-5">
-                <img src="./assets/img/India_map_marked.png" style="max-width: 100%; height: 600px;">
-            </div>
-
-
         </div>
     </section>
-    <!-- Footer-->
-    <footer class="py-5 nav-custom-color">
+
+    <!-- Stats Section -->
+    <section class="stats-section">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Years of Excellence</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Orders Completed</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item">
+                        <div class="stat-number">40+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Products</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise-section">
+        <div class="container">
+            <h1>Our Expertise</h1>
+            <div class="section-text">
+                <p class="mb-4">
+                    At Mehak Enterprises, we are more than just a supplier; we are a solutions provider. Our team
+                    comprises seasoned industry experts with in-depth knowledge of chemical applications and market
+                    trends.
+                </p>
+                <p>
+                    We leverage this expertise to understand the unique challenges and requirements of each
+                    client, offering tailored solutions that optimize their operations and drive their success. Whether
+                    you need a specific chemical compound, a customized blend, or expert advice on product selection and
+                    usage, Mehak Enterprises is your go-to resource for informed guidance and reliable support.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Map Section -->
+    <section class="clients-map text-center">
+        <div class="container">
+            <h2>Our Presence Across India</h2>
+            <img src="./assets/img/India_map_marked.png" alt="India Map" class="img-fluid" style="max-height: 500px;">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h5>Contact Us</h5>
+                    <p><i class="bi bi-geo-alt me-2"></i>123 Chemical Lane, Industrial Area</p>
+                    <p><i class="bi bi-envelope me-2"></i>info@mehakenterprises.com</p>
+                    <p><i class="bi bi-telephone me-2"></i>+91 123 456 7890</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <p class="mb-0">© 2024 Mehak Enterprises. All rights reserved.</p>
+                </div>
+            </div>
         </div>
     </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -170,9 +170,9 @@ if (!$result) {
 </head>
 
 <body>
-    <div class="row mw-100 mh-100">
+    <div class="d-flex gap-4 h-100">
         <!-- Sidebar -->
-        <div class="col-3">
+        <div class="col-2">
             <?php include("sidebar.php") ?>
         </div>
         <!-- Main Content -->

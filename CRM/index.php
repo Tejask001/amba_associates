@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>CRM Login</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet" />
     <style>
         body {
             display: flex;
@@ -240,7 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .login-container {
             background-color: #fff;
             /* White container */
-            padding: 4rem 3rem;
+            padding: 2.5rem 3rem;
             /* Increased padding */
             border-radius: 15px;
             /* More rounded corners */
@@ -334,33 +335,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-size: 0.9rem;
             /* Slightly smaller font size */
         }
+
+
+        .cart-btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .cart-btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 
 <body>
     <div class="row" style="width: 100%; display: flex; justify-content: center; align-items: center">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light nav-custom-color col-12">
-            <div class="container px-4 px-lg-5 ">
-                <a class="navbar-brand" href="../index.html">Mehak Enterprises</a>
+        <nav class="navbar navbar-expand-lg nav-custom-color fixed-top">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                    <img src="../assets/img/logo-notext.png" style="width: 50px;"><strong>MEHAK ENTERPRISES</strong>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="../index.html">Home</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link active" href="../index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="../shop.php">Shop</a></li>
                         <li class="nav-item"><a class="nav-link" href="../feedback.php">Feedback</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">CRM</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../CRM/index.php">CRM</a></li>
                     </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
+                    <a href="../cart.php">
+                        <button class="cart-btn btn rounded-pill px-4 py-2 d-flex align-items-center">
+                            <i class="bi bi-cart3 me-2"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <span class="badge bg-primary ms-2">0</span>
                         </button>
-                    </form>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -369,9 +385,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         <!-- login container -->
-        <div class="login-container col-12" style="margin-top: 20px; margin-bottom: 30px">
+        <div class="login-container col-12" style="margin-top: 100px; margin-bottom: 30px">
             <div class="logo w-100">
-                <img src="./assets/images/mehak-logo.png" alt="Company Logo">
+                <img src="./assets/images/mehak-logo-blue.png" alt="Company Logo">
             </div>
             <h2>Login</h2>
             <?php if (!empty($error))

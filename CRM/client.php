@@ -150,9 +150,9 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-    <div class="row mw-100 mh-100">
+    <div class="d-flex gap-4">
         <!-- Sidebar -->
-        <div class="col-3">
+        <div class="col-2">
             <?php include("sidebar.php") ?>
         </div>
 

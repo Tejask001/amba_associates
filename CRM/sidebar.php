@@ -1,6 +1,5 @@
 <style>
     #sidebar {
-        width: 100%;
         /* Even though it's in a col-3, we want the sidebar to take full width within that column */
         background-color: #023047;
         /* Darker background color */
@@ -10,6 +9,7 @@
         /* Ensure sidebar is above other content */
         padding-top: 20px;
         /* Space from the top */
+        position: fixed;
     }
 
     #sidebar img {
@@ -124,7 +124,7 @@
     }
 </style>
 <!-- Sidebar -->
-<div id="sidebar" class="col-2 d-flex flex-column text-white vh-100 p-0">
+<div id="sidebar" class="col-2 d-flex flex-column text-white p-0 vh-100">
     <div class="text-center py-3 row">
         <img src="./assets/images/logo-notext.png" alt="Logo" class="img-fluid col-12">
         <strong class="col-12" style="font-size: 24px;">MEHAK ENTERPRISES</strong>
