@@ -95,8 +95,10 @@ function loadCart() {
 
             products.forEach(product => {
                 let quantity = cart[product.batch_code];
-                let itemTotal = product.sp * quantity;
+                let itemTotal = (product.sp * quantity) + (product.sp * (product.tax_percent / 100) * quantity);
+                let taxAmount = (product.sp * (product.tax_percent / 100) * quantity);
                 total += itemTotal;
+
 
                 let row = `
                 <tr>
@@ -105,9 +107,11 @@ function loadCart() {
                         ${product.general_name}
                     </td>
                     <td>₹${product.sp}</td>
+                     <td>${product.tax_percent}%</td>
                     <td>
                         <input type="number" min="1" value="${quantity}" onchange="updateCartItemQuantity('${product.batch_code}', this.value)" style="width: 50px; text-align: center;">
                     </td>
+                    <td>₹${taxAmount.toFixed(2)}</td>
                     <td>₹${itemTotal.toFixed(2)}</td>
                     <td>
                         <button class="btn btn-danger" onclick="removeFromCart('${product.batch_code}')">Remove</button>

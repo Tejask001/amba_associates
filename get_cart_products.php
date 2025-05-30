@@ -29,7 +29,7 @@ $batch_code_placeholders = implode(',', array_fill(0, count($batch_codes), '?'))
 $types = str_repeat('s', count($batch_codes)); // Type string for batch codes
 
 // SQL query to fetch product details for given batch codes
-$sql = "SELECT batch_code, general_name, sp, image FROM product WHERE batch_code IN ($batch_code_placeholders)";
+$sql = "SELECT batch_code, general_name, sp, tax_percent, image FROM product WHERE batch_code IN ($batch_code_placeholders)";
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param($types, ...$batch_codes); // Bind parameters

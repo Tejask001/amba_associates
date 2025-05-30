@@ -60,11 +60,13 @@
                         <tr>
                             <th>Product</th>
                             <th>Price</th>
+                            <th>Tax Percent</th>
                             <th>Quantity</th>
+                            <th>Tax Amount</th>
                             <th>Total</th>
                             <th>Actions</th>
                         </tr>
-                    </thead>
+                        </th>
                     <tbody id="cart-body">
                         <!-- Cart items will be appended here -->
                     </tbody>
