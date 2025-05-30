@@ -210,20 +210,23 @@ $products_data = $products;
     </section>
 
     <!-- Footer (Same as before) -->
-    <footer class="py-5 nav-custom-color">
+    <footer class="py-5 nav-custom-color" style="
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright © Your Website 2023</p>
         </div>
-    </footer>
 
-    <!-- Bootstrap core JS and your custom script (Same as before) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCartBadge();
-        });
-    </script>
+        <!-- Bootstrap core JS and your custom script (Same as before) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                updateCartBadge();
+            });
+        </script>
 </body>
 
 </html>

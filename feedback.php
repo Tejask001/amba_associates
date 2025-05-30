@@ -142,9 +142,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <!-- Footer-->
-    <footer class="py-5 nav-custom-color">
+    <footer class="py-5 nav-custom-color" style="
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+            <p class="m-0 text-center text-white">Copyright © Your Website 2023</p>
         </div>
     </footer>
     <!-- Bootstrap core JS-->

@@ -96,9 +96,11 @@ if ($product === null) {
     </section>
 
     <!-- Footer-->
-    <footer class="py-5 nav-custom-color" style="position: absolute;
+    <footer class="py-5 nav-custom-color" style="
+    position: absolute;
+    width: 100%;
     bottom: 0;
-    width: 100%;">
+">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright © Your Website 2023</p>
         </div>

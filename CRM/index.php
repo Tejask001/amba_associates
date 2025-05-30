@@ -339,13 +339,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div class="row" style="width: 100%; display: flex; justify-content: center; align-items: center">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light nav-custom-color col-12">
+
+        <nav class="navbar navbar-expand-lg navbar-light nav-custom-color col-12" style="
+    position: absolute;
+    top: 0;
+">
             <div class="container px-4 px-lg-5 ">
                 <a class="navbar-brand" href="../index.html">Mehak Enterprises</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="../index.html">Home</a>
