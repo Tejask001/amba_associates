@@ -72,12 +72,15 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                            <td colspan="5" class="text-end"><strong>Total:</strong></td>
                             <td id="cart-total">₹0.00</td>
                             <td></td>
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+            <div style="display: flex; justify-content: end">
+                <a href="./delivery_details.php"><button type="link" class="btn btn-primary">Add Delivery Address</button></a>
             </div>
         </div>
     </section>
