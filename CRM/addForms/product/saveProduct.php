@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $purchase_prices = $_POST['purchase_price'];
     $selling_prices = $_POST['selling_price'];
     $margins = $_POST['margin'];
+    $tax_percents = $_POST['tax_percent'];
     $product_lifes = $_POST['product_life'];
     $stocks = $_POST['stock'];
 
@@ -35,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $selling_price = $selling_prices[$i];
             $margin = $margins[$i];
             $product_life = $product_lifes[$i];
+            $tax_percent = $tax_percents[$i];
             $stock = $stocks[$i];
             $imageFileName = null;  // Initialize to null
 
@@ -57,8 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
 
-            $sql = "INSERT INTO product (product_code, general_name, chemical_name, chemical_size, pp, sp, mrgp, product_life, batch_code, supplier_id, image)
-                    VALUES ('$product_id', '$general_name', '$chemical_name', '$size', '$purchase_price', '$selling_price', '$margin', '$product_life', '$batch_code', '$supplier_id', '$imageFileName')";
+            $sql = "INSERT INTO product (product_code, general_name, chemical_name, chemical_size, pp, sp, mrgp, tax_percent, product_life, batch_code, supplier_id, image)
+                    VALUES ('$product_id', '$general_name', '$chemical_name', '$size', '$purchase_price', '$selling_price', '$margin', '$tax_percent', '$product_life', '$batch_code', '$supplier_id', '$imageFileName')";
 
             if (!$conn->query($sql)) {
                 throw new Exception("Error inserting product: " . $conn->error);

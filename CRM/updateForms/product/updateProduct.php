@@ -181,6 +181,16 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
 
+            <div class="row mb-4">
+                <div class="col-md-2">
+                    <label for="tax_percent" class="form-label">Tax Percent (%)</label>
+                    <div class="input-group">
+                        <input type="number" name="tax_percent" class="form-control to-fill"
+                            value="<?php echo $product['tax_percent']; ?>" required>
+                        <span class="input-group-text">%</span>
+                    </div>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary mb-4">Update Product</button>
         </form>
     </div>

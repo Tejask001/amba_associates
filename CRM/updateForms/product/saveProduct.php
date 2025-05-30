@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $chemical_size = $_POST['chemical_size'];
     $purchase_price = $_POST['purchase_price'];
     $selling_price = $_POST['selling_price'];
+    $tax_percent = $_POST['tax_percent'];
     $margin_price = $_POST['margin_price'];
     $product_life = $_POST['product_life'];
 
@@ -22,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     try {
         // Insert into products table
-        $sql = "UPDATE product SET product_code='$product_code', general_name='$general_name', chemical_name='$chemical_name', chemical_size='$chemical_size', pp=$purchase_price, sp=$selling_price, mrgp=$margin_price, product_life=$product_life, batch_code='$batch_code', supplier_id=$supplier_id WHERE batch_code='$batch_code'";
+        $sql = "UPDATE product SET product_code='$product_code', general_name='$general_name', chemical_name='$chemical_name', chemical_size='$chemical_size', pp=$purchase_price, sp=$selling_price, mrgp=$margin_price, tax_percent=$tax_percent, product_life=$product_life, batch_code='$batch_code', supplier_id=$supplier_id WHERE batch_code='$batch_code'";
 
         if (!$conn->query($sql)) {
             throw new Exception("Error inserting product: " . $conn->error);

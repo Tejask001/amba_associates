@@ -230,6 +230,13 @@ require '../../config.php';
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-2">
+                            <label for="tax_percent" class="form-label">Tax Percent (%)</label>
+                            <div class="input-group">
+                                <input type="number" name="tax_percent[]" class="form-control to-fill" min="0">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
                         <div class="col-md-3">
                             <label for="image" class="form-label">Image</label>
                             <input type="file" name="image[]" class="form-control to-fill" accept="image/jpeg, image/png, image/gif">
@@ -252,70 +259,83 @@ require '../../config.php';
             // Add a new row
             $('#addRow').click(function() {
                 const newOrderItem = `
-            <div class="order-item py-4 px-4 mb-4">
-                <!-- Product Row 1 -->
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                        <label for="product_id" class="form-label">Product Id</label>
-                        <input type="text" name="product_id[]" class="form-control product-id to-fill" required>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="batch_code" class="form-label">Batch Code</label>
-                        <input type="text" name="batch_code[]" class="form-control to-fill" required>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="general_name" class="form-label">General Name</label>
-                        <input type="text" name="general_name[]" class="form-control to-fill" required>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="chemical_name" class="form-label">Chemical Name</label>
-                        <input type="text" name="chemical_name[]" class="form-control to-fill" required>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="size" class="form-label">Chemical Size</label>
-                        <input type="text" name="size[]" class="form-control to-fill" required>
-                    </div>
-                </div>
-                <!-- Product Row 2 -->
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                        <label for="purchase_price" class="form-label">Purchase Price</label>
-                        <div class="input-group">
-                            <span class="input-group-text">₹</span>
-                            <input type="number" name="purchase_price[]" class="form-control purchase-price to-fill" min="0" required>
+             <div class="order-item py-4 px-4 mb-4">
+                    <!-- Product Row 1 -->
+                    <div class="row mb-3">
+                        <div class="col-md-2">
+                            <label for="product_id" class="form-label">Product Id</label>
+                            <input type="text" name="product_id[]" class="form-control product-id to-fill" required>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="batch_code" class="form-label">Batch Code</label>
+                            <input type="text" name="batch_code[]" class="form-control to-fill" required>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="general_name" class="form-label">General Name</label>
+                            <input type="text" name="general_name[]" class="form-control to-fill" required>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="chemical_name" class="form-label">Chemical Name</label>
+                            <input type="text" name="chemical_name[]" class="form-control to-fill" required>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="size" class="form-label">Chemical Size</label>
+                            <input type="text" name="size[]" class="form-control to-fill" required>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <label for="selling_price" class="form-label">Selling Price</label>
-                        <div class="input-group">
-                            <span class="input-group-text">₹</span>
-                            <input type="number" name="selling_price[]" class="form-control selling-price to-fill" min="0" required>
+
+                    <!-- Product Row 2 -->
+                    <div class="row mb-3">
+                        <div class="col-md-2">
+                            <label for="purchase_price" class="form-label">Purchase Price</label>
+                            <div class="input-group">
+                                <span class="input-group-text">₹</span>
+                                <input type="number" name="purchase_price[]"
+                                    class="form-control purchase-price to-fill" min="0" required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="selling_price" class="form-label">Selling Price</label>
+                            <div class="input-group">
+                                <span class="input-group-text">₹</span>
+                                <input type="number" name="selling_price[]" class="form-control selling-price to-fill"
+                                    min="0" required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="margin" class="form-label">Margin</label>
+                            <div class="input-group">
+                                <span class="input-group-text">₹</span>
+                                <input type="number" name="margin[]" class="form-control margin to-fill" min="0"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="product_life" class="form-label">Shelf Life (months)</label>
+                            <input type="number" name="product_life[]" class="form-control to-fill" min="0" required>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="stock" class="form-label">Stock Quantity</label>
+                            <input type="number" name="stock[]" class="form-control to-fill" min="0" required>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <label for="margin" class="form-label">Margin</label>
-                        <div class="input-group">
-                            <span class="input-group-text">₹</span>
-                            <input type="number" name="margin[]" class="form-control margin to-fill" min="0" readonly>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="tax_percent" class="form-label">Tax Percent (%)</label>
+                            <div class="input-group">
+                                <input type="number" name="tax_percent[]" class="form-control to-fill" min="0">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="image" class="form-label">Image</label>
+                            <input type="file" name="image[]" class="form-control to-fill" accept="image/jpeg, image/png, image/gif">
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button type="button" class="btn btn-danger remove-row">Remove</button>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <label for="product_life" class="form-label">Shelf Life (months)</label>
-                        <input type="number" name="product_life[]" class="form-control to-fill" min="0" required>
-                    </div>
-                    <div class="col-md-1">
-                        <label for="stock" class="form-label">Stock</label>
-                        <input type="number" name="stock[]" class="form-control to-fill" min="0" required>
-                    </div>
-                     <div class="col-md-2">
-                        <label for="image" class="form-label">Image</label>
-                        <input type="file" name="image[]" class="form-control to-fill" accept="image/jpeg, image/png, image/gif">
-                    </div>
-                    <div class="col-md-1 d-flex align-items-end">
-                        <button type="button" class="btn btn-danger remove-row">Remove</button>
-                    </div>
-                </div>
-            </div>`;
+                </div>`;
                 $('#itemsContainer').append(newOrderItem);
             });
 
