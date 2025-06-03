@@ -21,7 +21,7 @@ if ($order_result->num_rows != 1) {
 $order = $order_result->fetch_assoc();
 
 // Fetch order items
-$order_items_sql = "SELECT oi.*, p.general_name, p.chemical_name, p.chemical_size, p.pp, p.sp, p.mrgp, p.product_life FROM order_items oi
+$order_items_sql = "SELECT oi.*, p.general_name, p.chemical_name, p.chemical_size, p.pp, p.sp, p.mrgp, p.tax_percent, p.product_life FROM order_items oi
                     LEFT JOIN product p ON oi.batch_code = p.batch_code
                     WHERE oi.order_id = '$order_id'";
 $order_items_result = $conn->query($order_items_sql);
@@ -32,7 +32,7 @@ while ($row = $order_items_result->fetch_assoc()) {
 }
 
 // Fetch products for the dropdown (same as in add order page)
-$products_result = $conn->query("SELECT product_code, general_name, chemical_name, chemical_size, pp, sp, mrgp, product_life, batch_code FROM product");
+$products_result = $conn->query("SELECT product_code, general_name, chemical_name, chemical_size, pp, sp, mrgp, tax_percent, product_life, batch_code FROM product");
 $products = [];
 while ($row = $products_result->fetch_assoc()) {
     $products[] = $row;
@@ -219,10 +219,10 @@ while ($row = $products_result->fetch_assoc()) {
                         <select id="supplier_id" name="supplier_id" class="form-select to-fill" required>
                             <option value="">Select Supplier</option>
                             <?php
-                            $supplier_result = $conn->query("SELECT id, CONCAT(comp_first_name, ' ', comp_middle_name, ' ', comp_last_name) AS company_name FROM supplier");
+                            $supplier_result = $conn->query("SELECT id, comp_name FROM supplier");
                             while ($row = $supplier_result->fetch_assoc()) {
                                 $selected = ($row['id'] == $order['supplier_id']) ? 'selected' : '';
-                                echo "<option value='{$row['id']}' $selected>{$row['company_name']}</option>";
+                                echo "<option value='{$row['id']}' $selected>{$row['comp_name']}</option>";
                             }
                             ?>
                         </select>
@@ -260,8 +260,8 @@ while ($row = $products_result->fetch_assoc()) {
                         <label for="advance" class="form-label">Advance</label>
                         <div class="input-group">
                             <span class="input-group-text">₹</span>
-                            <input type="number" step="0.01" id="advance" name="advance" class="form-control to-fill" min="0"
-                                value="<?php echo $order['advance']; ?>" required>
+                            <input type="number" step="0.01" id="advance" name="advance" class="form-control to-fill"
+                                min="0" value="<?php echo $order['advance']; ?>" required>
                         </div>
                     </div>
                     <div class="mb-3 col-md-2">
@@ -317,13 +317,14 @@ while ($row = $products_result->fetch_assoc()) {
                             </div>
                             <div class="col-md-1">
                                 <label for="quantity" class="form-label">Quantity</label>
-                                <input type="number" step="0.01" name="quantity[]" class="form-control quantity to-fill" min="1"
-                                    value="<?php echo $item['quantity']; ?>" required>
+                                <input type="number" step="0.01" name="quantity[]" class="form-control quantity to-fill"
+                                    min="1" value="<?php echo $item['quantity']; ?>" required>
                             </div>
                             <div class="col-md-2">
                                 <label for="discount" class="form-label">Discount</label>
                                 <div class="input-group">
-                                    <input type="number" step="0.01" name="discount[]" class="form-control discount to-fill" min="0"
+                                    <input type="number" step="0.01" name="discount[]"
+                                        class="form-control discount to-fill" min="0"
                                         value="<?php echo $item['discount']; ?>" required>
                                     <span class="input-group-text">%</span>
                                 </div>
@@ -336,8 +337,8 @@ while ($row = $products_result->fetch_assoc()) {
                                 <label for="freight" class="form-label">Freight Charges</label>
                                 <div class="input-group">
                                     <span class="input-group-text">₹</span>
-                                    <input type="number" step="0.01" name="freight[]" class="form-control freight to-fill" min="0"
-                                        value="<?php echo $item['freight']; ?>" required>
+                                    <input type="number" step="0.01" name="freight[]" class="form-control freight to-fill"
+                                        min="0" value="<?php echo $item['freight']; ?>" required>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -354,7 +355,8 @@ while ($row = $products_result->fetch_assoc()) {
                             </div>
                             <div class="col-md-2">
                                 <label for="tax_percent" class="form-label">Tax Amount (%)</label>
-                                <input type="number" step="0.01" name="tax_percent[]" class="form-control tax-percent to-fill" min="0"
+                                <input type="number" step="0.01" name="tax_percent[]"
+                                    class="form-control tax-percent to-fill" min="0"
                                     value="<?php echo $item['tax_percent']; ?>" required>
                             </div>
                             <div class="col-md-2">
@@ -389,7 +391,8 @@ while ($row = $products_result->fetch_assoc()) {
                                 <label for="billing_amount" class="form-label">Billing Amount</label>
                                 <div class="input-group">
                                     <span class="input-group-text">₹</span>
-                                    <input type="number" step="0.01" name="billing_amount[]" class="form-control billing-amount"
+                                    <input type="number" step="0.01" name="billing_amount[]"
+                                        class="form-control billing-amount"
                                         value="<?php echo $item['billing_amount']; ?>" readonly>
                                 </div>
                             </div>
@@ -411,8 +414,8 @@ while ($row = $products_result->fetch_assoc()) {
             </div>
 
             <!-- Add Row and Submit Buttons -->
-            <button type="button" class="btn btn-primary mb-4" id="addRow">Add Item</button>
-            <button type="submit" class="btn btn-success mx-2 mb-4">Update Order</button>
+            <button type="button" class="btn btn-secondary mb-4" id="addRow">Add Item</button>
+            <button type="submit" class="btn btn-primary mx-2 mb-4">Update Order</button>
         </form>
     </div>
 
