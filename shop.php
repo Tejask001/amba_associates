@@ -146,13 +146,17 @@ $products_data = $products;
 <body>
     <!-- Navigation (Same as before) -->
     <nav class="navbar navbar-expand-lg navbar-light nav-custom-color">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="./index.html">Mehak Enterprises</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="container px-4 px-lg-5 ">
+            <a class="navbar-brand" href="./index.html"><img src="./assets/img/logo-notext.png" style="width: 60px;">
+                <strong>MEHAK ENTERPRISES</strong></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="./index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active " href="./shop.php">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="./shop.php">Shop</a></li>
                     <li class="nav-item"><a class="nav-link" href="./feedback.php">Feedback</a></li>
                     <li class="nav-item"><a class="nav-link" href="./CRM/index.php">CRM</a></li>
                 </ul>
