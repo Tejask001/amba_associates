@@ -96,8 +96,8 @@ try {
         }
 
         // Insert new order item
-        $insert_item_sql = "INSERT INTO order_items (order_id, batch_code, quantity, discount, tax_percent, cgst, sgst, igst, freight, billing_amount) 
-                             VALUES ('$order_id', '$batch_code', $quantity, $discount,$tax_percent_value, $cgst_value, $sgst_value, $igst_value, $freight, $billing_amount_value)";
+        $insert_item_sql = "INSERT INTO order_items (order_id, batch_code, quantity, discount, cgst, sgst, igst, freight, billing_amount) 
+                             VALUES ('$order_id', '$batch_code', $quantity, $discount, $cgst_value, $sgst_value, $igst_value, $freight, $billing_amount_value)";
         if (!$conn->query($insert_item_sql)) {
             throw new Exception("Error inserting updated order item: " . $conn->error);
         }
