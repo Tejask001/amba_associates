@@ -209,6 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="order-info" style="display: flex;">
                     <p><strong>Date:</strong> <span id="orderDate"></span></p>
                     <p style="margin-left: 20px;"><strong>Party Name:</strong> <span id="partyName"></span></p>
+                    <p style="margin-left: 20px;"><strong>Order Type:</strong> <span id="orderType"></span></p>
                 </div>
                 <h5>Products in the Order</h5>
                 <table class="table table-bordered table-striped">
@@ -303,6 +304,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         success: function(data) {
                             $('#orderDate').text(data.order_date);
                             $('#partyName').text(data.party_name);
+                            $('#orderType').text(data.order_type);
 
                             const productList = $('#productList');
                             productList.empty();

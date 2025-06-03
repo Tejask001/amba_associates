@@ -37,10 +37,13 @@ if (isset($_GET['order_id'])) {
 
     // Determine which name to use
     $partyName = '';
+    $orderType = '';
     if (!empty($orderDetails['client_id'])) {
         $partyName = $orderDetails['client_name'];
+        $orderType = 'Sale';
     } elseif (!empty($orderDetails['supplier_id'])) {
         $partyName = $orderDetails['supplier_name'];
+        $orderType = 'Purchase';
     } else {
         $partyName = 'N/A'; // Default if neither client nor supplier is found
     }
@@ -50,6 +53,7 @@ if (isset($_GET['order_id'])) {
     echo json_encode([
         'order_date' => $orderDetails['order_date'] ?? 'N/A',
         'party_name' => $partyName,
+        'order_type' => $orderType,
         'products' => $productList
     ]);
 }
